@@ -30,6 +30,9 @@ namespace WebAPI
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void Inserttbl_student_data(tbl_student_data instance);
+    partial void Updatetbl_student_data(tbl_student_data instance);
+    partial void Deletetbl_student_data(tbl_student_data instance);
     partial void Inserttbl_student2(tbl_student2 instance);
     partial void Updatetbl_student2(tbl_student2 instance);
     partial void Deletetbl_student2(tbl_student2 instance);
@@ -64,6 +67,14 @@ namespace WebAPI
 			get
 			{
 				return this.GetTable<tbl_student>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_student_data> tbl_student_datas
+		{
+			get
+			{
+				return this.GetTable<tbl_student_data>();
 			}
 		}
 		
@@ -121,6 +132,181 @@ namespace WebAPI
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_student_data")]
+	public partial class tbl_student_data : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _address;
+		
+		private string _mobile;
+		
+		private System.Nullable<int> _studentid;
+		
+		private EntityRef<tbl_student2> _tbl_student2;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnaddressChanging(string value);
+    partial void OnaddressChanged();
+    partial void OnmobileChanging(string value);
+    partial void OnmobileChanged();
+    partial void OnstudentidChanging(System.Nullable<int> value);
+    partial void OnstudentidChanged();
+    #endregion
+		
+		public tbl_student_data()
+		{
+			this._tbl_student2 = default(EntityRef<tbl_student2>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address", DbType="NVarChar(50)")]
+		public string address
+		{
+			get
+			{
+				return this._address;
+			}
+			set
+			{
+				if ((this._address != value))
+				{
+					this.OnaddressChanging(value);
+					this.SendPropertyChanging();
+					this._address = value;
+					this.SendPropertyChanged("address");
+					this.OnaddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mobile", DbType="NVarChar(15)")]
+		public string mobile
+		{
+			get
+			{
+				return this._mobile;
+			}
+			set
+			{
+				if ((this._mobile != value))
+				{
+					this.OnmobileChanging(value);
+					this.SendPropertyChanging();
+					this._mobile = value;
+					this.SendPropertyChanged("mobile");
+					this.OnmobileChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_studentid", DbType="Int")]
+		public System.Nullable<int> studentid
+		{
+			get
+			{
+				return this._studentid;
+			}
+			set
+			{
+				if ((this._studentid != value))
+				{
+					if (this._tbl_student2.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnstudentidChanging(value);
+					this.SendPropertyChanging();
+					this._studentid = value;
+					this.SendPropertyChanged("studentid");
+					this.OnstudentidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_student2_tbl_student_data", Storage="_tbl_student2", ThisKey="studentid", OtherKey="id", IsForeignKey=true)]
+		public tbl_student2 tbl_student2
+		{
+			get
+			{
+				return this._tbl_student2.Entity;
+			}
+			set
+			{
+				tbl_student2 previousValue = this._tbl_student2.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_student2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_student2.Entity = null;
+						previousValue.tbl_student_datas.Remove(this);
+					}
+					this._tbl_student2.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_student_datas.Add(this);
+						this._studentid = value.id;
+					}
+					else
+					{
+						this._studentid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tbl_student2");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_student2")]
 	public partial class tbl_student2 : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -130,6 +316,8 @@ namespace WebAPI
 		private int _id;
 		
 		private string _name;
+		
+		private EntitySet<tbl_student_data> _tbl_student_datas;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -143,6 +331,7 @@ namespace WebAPI
 		
 		public tbl_student2()
 		{
+			this._tbl_student_datas = new EntitySet<tbl_student_data>(new Action<tbl_student_data>(this.attach_tbl_student_datas), new Action<tbl_student_data>(this.detach_tbl_student_datas));
 			OnCreated();
 		}
 		
@@ -186,6 +375,19 @@ namespace WebAPI
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_student2_tbl_student_data", Storage="_tbl_student_datas", ThisKey="id", OtherKey="studentid")]
+		public EntitySet<tbl_student_data> tbl_student_datas
+		{
+			get
+			{
+				return this._tbl_student_datas;
+			}
+			set
+			{
+				this._tbl_student_datas.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -204,6 +406,18 @@ namespace WebAPI
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_tbl_student_datas(tbl_student_data entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_student2 = this;
+		}
+		
+		private void detach_tbl_student_datas(tbl_student_data entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_student2 = null;
 		}
 	}
 }

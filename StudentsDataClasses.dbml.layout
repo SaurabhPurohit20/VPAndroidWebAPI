@@ -2,17 +2,30 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="StudentsDataClasses">
   <DataContextMoniker Name="/StudentsDataClassesDataContext" />
   <nestedChildShapes>
-    <classShape Id="1403315c-387f-4f19-a201-7b73e095bb5e" absoluteBounds="0.75, 0.75, 2, 1.1939925130208335">
+    <classShape Id="f29b0b0c-d399-440a-91b0-33e9544e8d80" absoluteBounds="0.75, 3.75, 2, 1.193992513020834">
       <DataClassMoniker Name="/StudentsDataClassesDataContext/tbl_student" />
       <nestedChildShapes>
-        <elementListCompartment Id="fabbb774-bdcd-4011-914f-303393142924" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e17df3f8-4362-41fc-88aa-a990d68eb56c" absoluteBounds="0.765, 4.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ab1bc94a-f115-4cb6-9dc1-3676b5420a8e" absoluteBounds="0.75, 2.75, 2, 1.1939925130208335">
+    <classShape Id="09aeebdd-a49e-4efe-8505-6148ba7005d7" absoluteBounds="3.5, 0.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/StudentsDataClassesDataContext/tbl_student_data" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e8b74a03-55f7-4fae-98eb-a3b1acf3868e" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a41b4d4f-c257-4cff-9a21-fd5afd723869" absoluteBounds="0.75, 1.125, 2, 1.1939925130208338">
       <DataClassMoniker Name="/StudentsDataClassesDataContext/tbl_student2" />
       <nestedChildShapes>
-        <elementListCompartment Id="b4bf69f5-95e1-4c18-9979-e4dc02aaebdd" absoluteBounds="0.765, 3.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6151b5af-b3b0-425b-86b1-b8be7b51cbf8" absoluteBounds="0.765, 1.585, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.72199625651042); (3.5 : 1.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/StudentsDataClassesDataContext/tbl_student2/tbl_student2_tbl_student_data" />
+      <nodes>
+        <classShapeMoniker Id="a41b4d4f-c257-4cff-9a21-fd5afd723869" />
+        <classShapeMoniker Id="09aeebdd-a49e-4efe-8505-6148ba7005d7" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

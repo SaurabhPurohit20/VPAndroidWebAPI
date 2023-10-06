@@ -5,10 +5,20 @@
       <Column Name="name" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tbl_student_data" Member="tbl_student_datas">
+    <Type Name="tbl_student_data">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mobile" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="studentid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_student2_tbl_student_data" Member="tbl_student2" ThisKey="studentid" OtherKey="id" Type="tbl_student2" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.tbl_student2" Member="tbl_student2s">
     <Type Name="tbl_student2">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_student2_tbl_student_data" Member="tbl_student_datas" ThisKey="id" OtherKey="studentid" Type="tbl_student_data" />
     </Type>
   </Table>
 </Database>
